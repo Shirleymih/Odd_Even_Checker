@@ -12,40 +12,50 @@ namespace Odd_Even_Checker
     {
         static void Main(string[] args)
         {
+            
             bool success = true;
             while (success)
             {
-                Console.WriteLine("Input Number:");
-                string num1Input = Console.ReadLine();
 
-                if (int.TryParse(num1Input, out int num))
+                try
                 {
+                    Console.Write("Input Number: ");
+                    int num1 = Convert.ToInt32(Console.ReadLine());
+                    Console.WriteLine(num1);
+
+                    
+                    int num2 = 2;
+                    int remainder = num1 % num2;
                     success = false;
-                    Console.WriteLine(num);
+
+                    if (remainder == 0)
+                    {
+                        Console.WriteLine("Number is even.");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Number is odd.");
+                    }
                 }
-                else
+
+                catch (OverflowException)
+                {
+                    Console.WriteLine("Please, only enter a number less than 2 billion!");
+                  
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please, only enter numbers!");
+                }
+                catch (Exception)
                 {
                     Console.WriteLine("Failed to convert!");
                 }
 
-                int num1 = Convert.ToInt32(num1Input);
-
-                int num2 = 2;
-                int remainder = num1 % num2;
-                Console.WriteLine(remainder);
-
-                if (remainder == 0)
-                {
-                    Console.WriteLine("Number is even.");
-                }
-
-                else
-                {
-                    Console.WriteLine("Number is odd.");
-                }
             }
-                //Console.ReadLine();
-            }
+            Console.ReadLine();
         }
     }
+}
 
